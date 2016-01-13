@@ -75,3 +75,6 @@ class LineResult:
 
     def getRigthColor(self):
         return self.__result.count("COLOR")
+
+    def getNON(self):
+        return self.__result.count("NON")
