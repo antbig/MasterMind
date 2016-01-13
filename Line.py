@@ -69,3 +69,9 @@ class LineResult:
 
     def iscorrect(self):
         return len(self.__result) == self.__result.count("OK")
+
+    def getCorrect(self):
+        return self.__result.count("OK")
+
+    def getRigthColor(self):
+        return self.__result.count("COLOR")
