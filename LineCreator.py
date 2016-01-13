@@ -12,6 +12,7 @@ def generatenewline(nbcolor, allowdouble=False):
     colors = list(Colors.COLORS)
     for id in range(0, nbcolor):
         color = random.choice(colors)
-        colors.remove(color)
+        if not allowdouble:
+            colors.remove(color)
         line.addcolor(color)
     return line
