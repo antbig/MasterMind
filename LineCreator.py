@@ -7,8 +7,11 @@ import Colors
 import random
 
 
-def generatenewline(nbcolor):
+def generatenewline(nbcolor, allowdouble=False):
     line = Line.Line()
-    for color in range(0, nbcolor):
-        line.addcolor(random.choice(Colors.COLORS))
+    colors = list(Colors.COLORS)
+    for id in range(0, nbcolor):
+        color = random.choice(colors)
+        colors.remove(color)
+        line.addcolor(color)
     return line

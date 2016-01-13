@@ -6,5 +6,5 @@
 import LineCreator
 
 
-line = LineCreator.generatenewline(4)
+line = LineCreator.generatenewline(6)
 print line
