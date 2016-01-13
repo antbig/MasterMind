@@ -66,3 +66,6 @@ class LineResult:
 
     def getresult(self):
         return self.__result
+
+    def iscorrect(self):
+        return len(self.__result) == self.__result.count("OK")

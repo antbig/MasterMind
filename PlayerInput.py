@@ -17,7 +17,7 @@ class PlayerInput:
         for color in Colors.COLORS:
             stringvalue += color.getdisplayname() + " "
         print "couleurs disponible : ", stringvalue
-        print "Reponce :"
+        print "Reponce (", self.__nbcouleur, ") :"
         return self.__processinput(raw_input())
 
     def __processinput(self, inputvalue):

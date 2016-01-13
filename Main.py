@@ -15,15 +15,19 @@ line.addcolor(Colors.GREEN)
 line.addcolor(Colors.RED)
 line.addcolor(Colors.BLUE)
 
-input = PlayerInput.PlayerInput(line.getnbcolor())
-while not input.askforanswer():
-    pass
-answer = input.getline()
+
 
 print line
-print answer
-result = answer.compareto(line)
-stringresult = ""
-for r in result.getresult():
-    stringresult += r+" "
-print stringresult
+correct = False
+
+while not correct:
+    input = PlayerInput.PlayerInput(line.getnbcolor())
+    while not input.askforanswer():
+        pass
+    answer = input.getline()
+    result = answer.compareto(line)
+    stringresult = ""
+    for r in result.getresult():
+        stringresult += r+" "
+    print stringresult
+    correct = result.iscorrect()
