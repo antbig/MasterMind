@@ -3,24 +3,27 @@
     par Antoine Leonard et Hakim Kebli
 
 """
-import LineCreator
+import Colors
 import PlayerInput
+import Line
 
 
-line = LineCreator.generatenewline(6)
+line = Line.Line()
 
-input = PlayerInput.PlayerInput(6)
+line.addcolor(Colors.RED)
+line.addcolor(Colors.GREEN)
+line.addcolor(Colors.RED)
+line.addcolor(Colors.BLUE)
+
+input = PlayerInput.PlayerInput(line.getnbcolor())
 while not input.askforanswer():
     pass
 answer = input.getline()
 
 print line
 print answer
-
-"""
-response = raw_input()
-choices = response.split(" ")
-if len(choices) != 6:
-    print "Il faut 6 couleurs"
-print len(choices)
-"""
+result = answer.compareto(line)
+stringresult = ""
+for r in result.getresult():
+    stringresult += r+" "
+print stringresult
