@@ -5,19 +5,15 @@
 import Colors
 import Resolver
 import Line
+import LineCreator
 
 
 class Game:
 
     def start(self):
-        line = Line.Line()
+        line = LineCreator.generatenewline(4)
 
-        line.addcolor(Colors.PINK)
-        line.addcolor(Colors.GREEN)
-        line.addcolor(Colors.RED)
-        line.addcolor(Colors.BLUE)
-
-        input = Resolver.IA(line.getnbcolor())
+        input = Resolver.IA(line.getnbcolor(), line)
 
         print line
         correct = False
@@ -36,4 +32,4 @@ class Game:
             print answer, "(", stringresult, ")"
             correct = result.iscorrect()
             input.setResult(result)
-        print "Termine en ", str(tentative), " tentatives"
+        print "Termine en ", Line.counttry, " tentatives"

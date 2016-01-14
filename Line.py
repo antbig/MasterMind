@@ -41,9 +41,13 @@ class Line:
     def getallcolors(self):
         return self.__colors
 
+counttry = 0
+
 class LineResult:
 
     def __init__(self, line, compareto):
+        global counttry
+        counttry += 1
         self.__line = line
         self.__compareto = compareto
         self.__result = []
