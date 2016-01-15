@@ -11,7 +11,7 @@ import random
 
 class IA(PlayerInput.PlayerInput):
 
-    def __init__(self, nbcolor, answer, doublon=False):
+    def __init__(self, nbcolor, answer, doublon=True):
         super(IA, self).__init__(nbcolor)
         self.__doublon = doublon
         self.__firstTry = True
@@ -24,20 +24,21 @@ class IA(PlayerInput.PlayerInput):
         while result == 0:
             round += 1
             self.__generateChildren()
+            self.__mutation()
             result = self.__population[0].bien_place == nbcolor
-            #print "Generation enfant tours ", round
+            print "Generation enfant tours ", round, " top score= ", self.__population[0].bien_place
         print(self.__population[0])
 
     def __generatePopulation(self):
         while len(self.__population) < 40:
-            line = LineCreator.generatenewline(self.nbcolor)
+            line = LineCreator.generatenewline(self.nbcolor, self.__doublon)
             result = line.compareto(self.__answer)
             essai = Essai(result.getCorrect(), result.getRigthColor(), 5*result.getCorrect()+result.getRigthColor(), line)
             if self.__population.count(essai) == 0:
                 self.__population.append(essai)
         self.__population.sort(key=lambda x: x.score, reverse=True)
-        #for essai in self.__population:
-        #    print essai
+        for essai in self.__population:
+            print essai
 
     def __generateChildren(self):
         self.__population = self.__population[0:20]
@@ -60,14 +61,25 @@ class IA(PlayerInput.PlayerInput):
                     children1.addcolor(mother.getcolor(id))
                     children2.addcolor(father.getcolor(-id))
             result1 = children1.compareto(self.__answer)
-            essai1 = Essai(result1.getCorrect(), result1.getRigthColor(), 5*result1.getCorrect()+result1.getRigthColor(), children1)
+            essai1 = Essai(result1.getCorrect(), result1.getRigthColor(), 10*result1.getCorrect()+result1.getRigthColor(), children1)
             result2 = children2.compareto(self.__answer)
-            essai2 = Essai(result2.getCorrect(), result2.getRigthColor(), 5*result2.getCorrect()+result2.getRigthColor(), children2)
-            if essai1 not in self.__population:
+            essai2 = Essai(result2.getCorrect(), result2.getRigthColor(), 10*result2.getCorrect()+result2.getRigthColor(), children2)
+            if self.__population.count(essai1) == 0:
                 self.__population.append(essai1)
-            if essai2 not in self.__population:
+            if self.__population.count(essai2) == 0:
                 self.__population.append(essai2)
         self.__population.sort(key=lambda x: x.score, reverse=True)
+
+    def __mutation(self):
+        for essai in self.__population:
+            non = self.nbcolor - essai.bien_place - essai.mal_place
+            if non > 0:
+                for position in range(non):
+                    color = random.choice(Colors.COLORS)
+                    pos = random.choice(range(self.nbcolor))
+                    essai.combinaison.setColor(color, pos)
+
+
 
     def askforanswer(self):
         if self.__firstTry:
@@ -86,9 +98,6 @@ class IA(PlayerInput.PlayerInput):
                 move[i] = 0
                 move[i-1] += 1
         return move
-
-    def getcorrection(self, ):
-        pass
 
 
 class Essai:

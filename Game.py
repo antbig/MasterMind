@@ -6,14 +6,17 @@ import Interface
 import Resolver
 import Line
 import LineCreator
+import PlayerInput
 
 
 class Game:
 
-    def start(self):
-        line = LineCreator.generatenewline(4)
-
-        input = Resolver.IA(line.getnbcolor(), line)
+    def start(self, useplayer = True):
+        line = LineCreator.generatenewline(12)
+        if useplayer:
+            input = PlayerInput.PlayerInput(line.getnbcolor())
+        else:
+            input = Resolver.IA(line.getnbcolor(), line)
 
         print line
         correct = False

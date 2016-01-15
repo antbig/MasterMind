@@ -10,9 +10,9 @@ import random
 def generatenewline(nbcolor, allowdouble=False):
     line = Line.Line()
     colors = list(Colors.COLORS)
-    for id in range(0, nbcolor):
+    for id in range(nbcolor):
         color = random.choice(colors)
-        if not allowdouble:
-            colors.remove(color)
+        """if not allowdouble:
+            colors.remove(color)"""
         line.addcolor(color)
     return line

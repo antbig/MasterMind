@@ -32,11 +32,11 @@ BLUE = Color("bleu", 0, 0, 255, 3)
 YELLOW = Color("jaune", 248, 255, 1, 4)
 PURPLE = Color("violet", 170, 0, 238, 5)
 PINK = Color("rose", 255, 40, 255, 6)
-#WHITE = Color("blanc", 255, 255, 255, 7)
-#BLACK = Color("noir", 0, 0, 0, 8)
+WHITE = Color("blanc", 255, 255, 255, 7)
+BLACK = Color("noir", 0, 0, 0, 8)
 
 
-COLORS = [RED, GREEN, BLUE, YELLOW, PURPLE, PINK]
+COLORS = [RED, GREEN, BLUE, YELLOW, PURPLE, PINK, WHITE, BLACK]
 
 def getcolorfromname(name):
     for color in COLORS:

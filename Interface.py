@@ -66,7 +66,6 @@ class Interface():
             x += 44
             movableccircle.append(circle)
 
-
         while self.__loop:
             self.__fenetre.fill((0, 0, 0)) # clear screen
             self.displayBackground()
@@ -83,10 +82,19 @@ class Interface():
                                 movableccircle.remove(item)
                                 actualline.append(item)
                                 item.pos = (len(actualline)*44-22, actualy-22)
+                    actuallinehaschange = False
                     for item in actualline:
                         if (pos[0]>=(item.pos[0]-item.size) and pos[0]<=(item.pos[0]+item.size) and pos[1]>=(item.pos[1]-item.size) and  pos[1]<=(item.pos[1]+item.size)):
-                            pass
-                    
+                            actualline.remove(item)
+                            movableccircle.append(item)
+                            item.pos = item.oldposition
+                            actuallinehaschange = True
+                    if actuallinehaschange:
+                        col = 1
+                        for item in actualline:
+                            item.pos = (col*44-22, actualy-22)
+                            col += 1
+
 
                     if valideline.collidepoint(pos) and len(actualline) == 4:
                         print "click on valid"

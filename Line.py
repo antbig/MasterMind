@@ -41,6 +41,10 @@ class Line:
     def getallcolors(self):
         return self.__colors
 
+    def setColor(self, color, position):
+        if len(self.__colors) > position:
+            self.__colors.insert(position, color)
+
 counttry = 0
 
 class LineResult:
