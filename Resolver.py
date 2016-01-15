@@ -25,14 +25,14 @@ class IA(PlayerInput.PlayerInput):
             round += 1
             self.__generateChildren()
             result = self.__population[0].bien_place == nbcolor
-            print "Generation enfant tours ", round
+            #print "Generation enfant tours ", round
         print(self.__population[0])
 
     def __generatePopulation(self):
         while len(self.__population) < 40:
             line = LineCreator.generatenewline(self.nbcolor)
             result = line.compareto(self.__answer)
-            essai = Essai(result.getCorrect(), result.getRigthColor(), 10*result.getCorrect()+result.getRigthColor(), line)
+            essai = Essai(result.getCorrect(), result.getRigthColor(), 5*result.getCorrect()+result.getRigthColor(), line)
             if self.__population.count(essai) == 0:
                 self.__population.append(essai)
         self.__population.sort(key=lambda x: x.score, reverse=True)
@@ -60,12 +60,13 @@ class IA(PlayerInput.PlayerInput):
                     children1.addcolor(mother.getcolor(id))
                     children2.addcolor(father.getcolor(-id))
             result1 = children1.compareto(self.__answer)
-            essai1 = Essai(result1.getCorrect(), result1.getRigthColor(), 10*result1.getCorrect()+result1.getRigthColor(), children1)
+            essai1 = Essai(result1.getCorrect(), result1.getRigthColor(), 5*result1.getCorrect()+result1.getRigthColor(), children1)
             result2 = children2.compareto(self.__answer)
-            essai2 = Essai(result2.getCorrect(), result2.getRigthColor(), 10*result2.getCorrect()+result2.getRigthColor(), children2)
-
-            self.__population.append(essai1)
-            self.__population.append(essai2)
+            essai2 = Essai(result2.getCorrect(), result2.getRigthColor(), 5*result2.getCorrect()+result2.getRigthColor(), children2)
+            if essai1 not in self.__population:
+                self.__population.append(essai1)
+            if essai2 not in self.__population:
+                self.__population.append(essai2)
         self.__population.sort(key=lambda x: x.score, reverse=True)
 
     def askforanswer(self):

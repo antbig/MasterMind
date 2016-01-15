@@ -2,7 +2,7 @@
     Creer par Antoine Leonard
         antoine@antbig.fr
 """
-import Colors
+import Interface
 import Resolver
 import Line
 import LineCreator
@@ -33,3 +33,4 @@ class Game:
             correct = result.iscorrect()
             input.setResult(result)
         print "Termine en ", Line.counttry, " tentatives"
+

@@ -8,9 +8,7 @@ class Color:
 
     def __init__(self, name, r, g, b, id):
         self.__name = name
-        self.__r = r
-        self.__g = g
-        self.__b = b
+        self.__color = (r, g, b)
         self.__id = id
 
     def getname(self):
@@ -21,6 +19,9 @@ class Color:
 
     def getdisplayname(self):
         return self.__name+ "("+ str(self.__id)+ ")"
+
+    def getcolor(self):
+        return self.__color
 
     def __str__(self):
         return self.__name+ "("+ str(self.__id)+ ")"
